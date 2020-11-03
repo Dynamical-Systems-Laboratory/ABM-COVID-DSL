@@ -8,7 +8,7 @@ import random
 # Input file with info on population
 agents_in = 'input_data/NR_agents.txt' 
 # Number of agents to create
-n_agents = 1000000
+n_agents = 10000
 # Place numbers
 n_houses = 29645 
 n_works = 882 
