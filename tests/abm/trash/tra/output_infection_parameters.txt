@@ -1,0 +1,44 @@
+agent variability gamma scale 4
+agent variability gamma shape 0.25
+college absenteeism correction 0.5
+daycare absenteeism correction 0.1
+exposed fraction to get tested 0.3
+fraction exposed never symptomatic 0.1
+fraction false negative 0.1
+fraction false positive 0.05
+fraction tested in hospitals 0.9
+fraction to get tested 0.6
+fraction with flu 0.03
+healthcare employees transmission rate 0.47
+high school absenteeism correction 0.25
+hospital patients transmission rate 0.2009
+hospital tested transmission rate 0.1
+hospitalized ICU transmission rate 0.7
+hospitalized transmission rate 0.9
+household scaling parameter 0.8
+household transmission rate 0.49
+htd wbl scale 10.1237
+htd wbl shape 1.6726
+latency log-normal mean 1.621
+latency log-normal standard deviation 0.418
+negative tests fraction 0.3
+otd logn mean 2.6696
+otd logn std 0.476
+oth gamma scale 3.4192
+oth gamma shape 0.7696
+primary and middle school absenteeism correction 0.2
+probability of death in ICU 0.5
+recovery time 14
+school transmission rate 0.94
+severity correction 2
+time before death to ICU 2
+time from decision to test 5
+time from exposed to infectiousness 4.6
+time from symptoms to infectiousness 0.5
+time from test to results 2
+time in ICU 6
+time in hospital 8
+time in hospital after ICU 10
+transmission rate of home isolated 0.4
+work absenteeism correction 0.5
+workplace transmission rate 0.47

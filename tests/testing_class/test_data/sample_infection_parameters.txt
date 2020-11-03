@@ -1,0 +1,86 @@
+// household transmission rate
+0.3
+// severity correction
+2.0
+// household scaling parameter
+0.85
+// workplace transmission rate
+0.2
+// work absenteeism correction
+0.5
+// school transmission rate
+0.8
+// daycare absenteeism correction
+0.1
+// primary and middle school absenteeism correction
+0.2
+// high school absenteeism correction
+0.25
+// college absenteeism correction
+0.5
+// healthcare employees transmission rate
+0.6
+// hospital patients transmission rate
+0.9
+// hospitalized transmission rate
+0.3
+// hospitalized ICU transmission rate
+0.5
+// hospital tested transmission rate
+0.1
+// negative tests fraction 
+0.3
+// fraction tested in hospitals
+0.9
+// fraction false negative
+0.1
+// fraction false positive
+0.05
+// agent variability gamma shape
+0.25
+// agent variability gamma scale
+4.0
+// latency log-normal mean
+1.621
+// latency log-normal standard deviation
+0.418
+// fraction exposed never symptomatic
+0.10
+// fraction to get tested
+0.6
+// time from decision to test
+5.0
+// time from test to results
+2.0
+// transmission rate of home isolated
+0.1
+// time from symptoms to infectiousness
+0.5
+// time from exposed to infectiousness
+4.6 days
+// probability of death in ICU
+0.5
+// time in hospital
+8
+// time in ICU
+6
+// time in hospital after ICU
+10
+// recovery time
+14
+// oth gamma shape
+0.7696
+// oth gamma scale
+3.4192
+// otd logn mean
+2.6696
+// otd logn std
+0.4760
+// htd wbl shape
+1.6726
+// htd wbl scale
+10.1237
+// time before death to ICU
+2
+// fraction with flu
+0.03

@@ -1,0 +1,4 @@
+1			4.56	8.1	     middle  
+2   5.0 10.3333			primary
+3 409.07	1.1 primary
+4 5.0 5.0 middle

@@ -1,0 +1,126 @@
+// household transmission rate
+0.69
+// severity correction
+2.0
+// household scaling parameter
+0.8
+// workplace transmission rate
+0.66
+// work absenteeism correction
+0.1
+// RH employee absenteeism factor
+0.1
+// RH employee transmission rate
+0.66     
+// RH resident transmission rate 
+0.69
+// RH transmission rate of home isolated
+0.48
+// school transmission rate
+1.33
+// school employee absenteeism correction
+0.1
+// school employee transmission rate
+0.66
+// daycare absenteeism correction
+0.1
+// primary and middle school absenteeism correction
+0.1
+// high school absenteeism correction
+0.1
+// college absenteeism correction
+0.1
+// healthcare employees transmission rate
+1.28
+// hospital patients transmission rate
+1.38
+// hospitalized transmission rate
+1.02
+// hospitalized ICU transmission rate
+1.34
+// hospital tested transmission rate
+1.75
+// negative tests fraction 
+0.89
+// fraction with flu
+0.0483
+// flu testing duration
+-10
+// fraction tested in hospitals
+0.60
+// fraction false negative
+0.05
+// fraction false positive
+0.05
+// agent variability gamma shape
+0.25
+// agent variability gamma scale
+4.0
+// latency log-normal mean
+1.621
+// latency log-normal standard deviation
+0.418
+// fraction exposed never symptomatic
+0.5
+// fraction to get tested
+1.0
+// exposed fraction to get tested
+0.5
+// time from decision to test
+2.25
+// time from test to results
+1.75
+// transmission rate of home isolated
+0.48
+// time from symptoms to infectiousness
+0.5
+// time from exposed to infectiousness
+4.6 
+// probability of death in ICU
+0.5
+// probability dying if needing but not admitted to icu
+1.0 
+// time in hospital
+3
+// time in ICU
+2
+// time in hospital after ICU
+4
+// recovery time
+4.9
+// oth gamma shape
+0.7696
+// oth gamma scale
+3.4192
+// otd logn mean
+2.6696
+// otd logn std
+0.4760
+// htd wbl shape
+1.6726
+// htd wbl scale
+10.1237
+// time before death to ICU
+2
+// time to start data collection
+9
+// start testing
+9
+// school closure
+20
+// lockdown
+29
+// reopening phase 1
+94
+// reopening phase 2
+108
+// reopening phase 3
+122
+// fraction of ld businesses 
+0.4
+// fraction of phase 1 businesses
+0.5
+// fraction of phase 2 businesses
+0.6
+// fraction of phase 3 businesses
+0.7
