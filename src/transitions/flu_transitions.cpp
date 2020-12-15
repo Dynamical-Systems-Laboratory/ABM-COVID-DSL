@@ -46,6 +46,7 @@ std::vector<int> FluTransitions::susceptible_transitions(Agent& agent, const dou
 				&& (agent.tested_awaiting_test() == true)
 				&& (agent.home_isolated() == false)){
 			agent.set_home_isolated(true);
+			remove_from_all_workplaces_and_schools(agent, schools, workplaces, retirement_homes);
 		}
 		// If being tested
 		if ((agent.tested()) && (agent.get_time_of_test() <= time)
@@ -95,8 +96,6 @@ void FluTransitions::process_new_flu(Agent& agent, const int n_hospitals, const 
 	agent.set_symptomatic_non_covid(true);
 	// Testing properties
 	if (flu.getting_tested(testing)){
-		// Home isolation for all tested
-		remove_from_all_workplaces_and_schools(agent, schools, workplaces, retirement_homes);
 		if (infection.tested_in_hospital(infection_parameters.at("fraction tested in hospitals"))){
 			states_manager.set_waiting_for_test_in_hospital(agent);
 			int hsp_ID = infection.get_random_hospital_ID(n_hospitals);
@@ -125,12 +124,18 @@ double FluTransitions::compute_susceptible_lambda(const Agent& agent, const doub
 	double lambda_tot = 0.0;
 
 	// Regular susceptible agent
-	
-	if (agent.retirement_home_resident()){
-		const RetirementHome& rh = retirement_homes.at(agent.get_household_ID()-1);
-		lambda_tot = rh.get_infected_contribution();
-		return lambda_tot;
-	}
+	// Special treatment for retirement homes if not tested at that moment
+    // and not tested in a hospital     
+    if (agent.retirement_home_resident()){
+        if (!((agent.tested()) && (agent.tested_in_hospital())
+            && (agent.get_time_of_test() <= time)
+            && (agent.tested_awaiting_test() == true))){
+
+            const RetirementHome& rh = retirement_homes.at(agent.get_household_ID()-1);
+            lambda_tot = rh.get_infected_contribution();
+            return lambda_tot;
+        }
+    }
 
 	const Household& house = households.at(agent.get_household_ID()-1);
 	if (agent.student() && agent.works()){

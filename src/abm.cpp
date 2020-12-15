@@ -462,9 +462,15 @@ void ABM::vaccinate_random()
 // Vaccinate specific group of agents in the population
 void ABM::vaccinate_group()
 {
-	if (vaccine_group_name == "hospital employees"){
+	if (vaccine_group_name == "hospital employees") {
 		implement_group_vaccination(&Agent::hospital_employee);
-	}else{
+	} else if (vaccine_group_name == "school employees") {
+		implement_group_vaccination(&Agent::school_employee);
+	} else if (vaccine_group_name == "retirement home employees") {
+		implement_group_vaccination(&Agent::retirement_home_employee);
+	} else if (vaccine_group_name == "retirement home residents") {
+		implement_group_vaccination(&Agent::retirement_home_resident);
+	} else{
 		throw std::invalid_argument("Wrong vaccination group type: " + vaccine_group_name);
 	}		
 }

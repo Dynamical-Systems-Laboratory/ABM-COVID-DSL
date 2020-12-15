@@ -11,7 +11,8 @@ load('real_data/agregated_data')
 clrf = [0.4, 0.4, 0.4; 178/255, 198/255, 238/255; 175/255, 154/255, 210/255; 228/255, 181/255, 181/255; 205/255, 197/255, 181/255];
 % Mean
 % clrm = [164/255, 164/255, 230/255; 68/255, 68/255, 213/255; 21/255, 23/255, 150/255; 12/255, 12/255, 128/255; 3/255, 3/255, 129/255;];
-clrm = [0.14, 0.14, 0.14; 7/255, 70/255, 198/255; 77/255, 7/255, 198/255; 185/255, 46/255, 46/255; 91/255, 79/255, 54/255;];
+clrm = [0.14, 0.14, 0.14; 7/255, 70/255, 198/255; 77/255, 7/255, 198/255; 185/255, 46/255, 46/255;...
+    0.14, 0.14, 0.14; 77/255, 7/255, 198/255; 185/255, 46/255, 46/255; 91/255, 79/255, 54/255;];
 
 % Number of datasets to consider in one plot
 nsets = 3;
@@ -52,12 +53,21 @@ combined_res(:,:,1) = sim_res.tot_active(:,cst:end);
 % 2) No restrictions, vaccination of hospital employees
 sim_res = load('hsp_employee_vaccination');
 combined_res(:,:,2) = sim_res.tot_active(:,cst:end);
-% 3) No restrictions, vaccination of random population, equivalent to hospital employees
-sim_res = load('random_vaccination');
+% 3) No restrictions, school employees
+sim_res = load('school_employee_vaccination');
 combined_res(:,:,3) = sim_res.tot_active(:,cst:end);
-% 4) No restrictions, vaccination of random, 10x hospital employees
-sim_res = load('random_vaccination_10_times');
+% 4) No restrictions, rh employees
+sim_res = load('rh_employee_vaccination');
 combined_res(:,:,4) = sim_res.tot_active(:,cst:end);
+% 5) No restrictions, rh employees
+sim_res = load('rh_resident_vaccination');
+combined_res(:,:,5) = sim_res.tot_active(:,cst:end);
+% 6) No restrictions, vaccination of random population, equivalent to hospital employees
+sim_res = load('random_vaccination');
+combined_res(:,:,6) = sim_res.tot_active(:,cst:end);
+% 7) No restrictions, vaccination of random, 10x hospital employees
+sim_res = load('random_vaccination_10_times');
+combined_res(:,:,7) = sim_res.tot_active(:,cst:end);
 
 plot_all_and_mean(time(cst:end), combined_res, agregated_time, rtemp, 1, clrm, clrf, plot_title, ylab, false)
 
@@ -73,12 +83,21 @@ combined_res(:,:,1) = sim_res.tot_pos(:,cst:end) + sim_res.tot_fpos(:,cst:end) +
 % 2) No restrictions, vaccination of hospital employees
 sim_res = load('hsp_employee_vaccination');
 combined_res(:,:,2) = sim_res.tot_pos(:,cst:end)+ sim_res.tot_fpos(:,cst:end) + sim_res.not_tested_deaths(:,cst:end);
-% 3) No restrictions, vaccination of random population, equivalent to hospital employees
-sim_res = load('random_vaccination');
+% 3) No restrictions, school employees
+sim_res = load('school_employee_vaccination');
 combined_res(:,:,3) = sim_res.tot_pos(:,cst:end)+ sim_res.tot_fpos(:,cst:end) + sim_res.not_tested_deaths(:,cst:end);
-% 4) No restrictions, vaccination of random, 10x hospital employees
-sim_res = load('random_vaccination_10_times');
+% 4) No restrictions, rh employees
+sim_res = load('rh_employee_vaccination');
 combined_res(:,:,4) = sim_res.tot_pos(:,cst:end)+ sim_res.tot_fpos(:,cst:end) + sim_res.not_tested_deaths(:,cst:end);
+% 5) No restrictions, rh employees
+sim_res = load('rh_resident_vaccination');
+combined_res(:,:,5) = sim_res.tot_pos(:,cst:end)+ sim_res.tot_fpos(:,cst:end) + sim_res.not_tested_deaths(:,cst:end);
+% 6) No restrictions, vaccination of random population, equivalent to hospital employees
+sim_res = load('random_vaccination');
+combined_res(:,:,6) = sim_res.tot_pos(:,cst:end)+ sim_res.tot_fpos(:,cst:end) + sim_res.not_tested_deaths(:,cst:end);
+% 7) No restrictions, vaccination of random, 10x hospital employees
+sim_res = load('random_vaccination_10_times');
+combined_res(:,:,7) = sim_res.tot_pos(:,cst:end)+ sim_res.tot_fpos(:,cst:end) + sim_res.not_tested_deaths(:,cst:end);
 
 plot_all_and_mean(time(cst:end), combined_res, real_tot(1:end,1), real_tot(1:end,2), 2, clrm, clrf, plot_title, ylab, false)
 
@@ -100,14 +119,26 @@ combined_res(:,:,1) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated
 sim_res = load('hsp_employee_vaccination');
 temp = sim_res.tot_pos(:,cst:4:end)+ sim_res.tot_fpos(:,cst:4:end) + sim_res.not_tested_deaths(:,cst:4:end);
 combined_res(:,:,2) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
-% 3) No restrictions, vaccination of random population, equivalent to hospital employees
-sim_res = load('random_vaccination');
+% 3) No restrictions, school employees
+sim_res = load('school_employee_vaccination');
 temp = sim_res.tot_pos(:,cst:4:end)+ sim_res.tot_fpos(:,cst:4:end) + sim_res.not_tested_deaths(:,cst:4:end);
 combined_res(:,:,3) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
-% 4) No restrictions, vaccination of random, 10x hospital employees
-sim_res = load('random_vaccination_10_times');
+% 4) No restrictions, rh employees
+sim_res = load('rh_employee_vaccination');
 temp = sim_res.tot_pos(:,cst:4:end)+ sim_res.tot_fpos(:,cst:4:end) + sim_res.not_tested_deaths(:,cst:4:end);
 combined_res(:,:,4) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
+% 5) No restrictions, rh employees
+sim_res = load('rh_resident_vaccination');
+temp = sim_res.tot_pos(:,cst:4:end)+ sim_res.tot_fpos(:,cst:4:end) + sim_res.not_tested_deaths(:,cst:4:end);
+combined_res(:,:,5) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
+% 6) No restrictions, vaccination of random population, equivalent to hospital employees
+sim_res = load('random_vaccination');
+temp = sim_res.tot_pos(:,cst:4:end)+ sim_res.tot_fpos(:,cst:4:end) + sim_res.not_tested_deaths(:,cst:4:end);
+combined_res(:,:,6) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
+% 7) No restrictions, vaccination of random, 10x hospital employees
+sim_res = load('random_vaccination_10_times');
+temp = sim_res.tot_pos(:,cst:4:end)+ sim_res.tot_fpos(:,cst:4:end) + sim_res.not_tested_deaths(:,cst:4:end);
+combined_res(:,:,7) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
 
 plot_all_and_mean(agregated_time, combined_res, agregated_time, rtemp, 3, clrm, clrf, plot_title, ylab, false)
 
@@ -122,12 +153,21 @@ combined_res(:,:,1) = sim_res.tot_deaths(:,cst:end);
 % 2) No restrictions, vaccination of hospital employees
 sim_res = load('hsp_employee_vaccination');
 combined_res(:,:,2) = sim_res.tot_deaths(:,cst:end);
-% 3) No restrictions, vaccination of random population, equivalent to hospital employees
-sim_res = load('random_vaccination');
+% 3) No restrictions, school employees
+sim_res = load('school_employee_vaccination');
 combined_res(:,:,3) = sim_res.tot_deaths(:,cst:end);
-% 4) No restrictions, vaccination of random, 10x hospital employees
-sim_res = load('random_vaccination_10_times');
+% 4) No restrictions, rh employees
+sim_res = load('rh_employee_vaccination');
 combined_res(:,:,4) = sim_res.tot_deaths(:,cst:end);
+% 5) No restrictions, rh employees
+sim_res = load('rh_resident_vaccination');
+combined_res(:,:,5) = sim_res.tot_deaths(:,cst:end);
+% 6) No restrictions, vaccination of random population, equivalent to hospital employees
+sim_res = load('random_vaccination');
+combined_res(:,:,6) = sim_res.tot_deaths(:,cst:end);
+% 7) No restrictions, vaccination of random, 10x hospital employees
+sim_res = load('random_vaccination_10_times');
+combined_res(:,:,7) = sim_res.tot_deaths(:,cst:end);
 
 plot_all_and_mean(time(cst:end), combined_res, real_deaths(:,1), real_deaths(:,2)/n_county*n_new_rochelle, 4, clrm, clrf, plot_title, ylab, false)
 
@@ -147,14 +187,26 @@ combined_res(:,:,1) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated
 sim_res = load('hsp_employee_vaccination');
 temp = sim_res.tot_deaths(:,cst:4:end);
 combined_res(:,:,2) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
-% 3) No restrictions, vaccination of random population, equivalent to hospital employees
-sim_res = load('random_vaccination');
+% 3) No restrictions, school employees
+sim_res = load('school_employee_vaccination');
 temp = sim_res.tot_deaths(:,cst:4:end);
 combined_res(:,:,3) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
-% 4) No restrictions, vaccination of random, 10x hospital employees
-sim_res = load('random_vaccination_10_times');
+% 4) No restrictions, rh employees
+sim_res = load('rh_employee_vaccination');
 temp = sim_res.tot_deaths(:,cst:4:end);
 combined_res(:,:,4) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
+% 5) No restrictions, rh employees
+sim_res = load('rh_resident_vaccination');
+temp = sim_res.tot_deaths(:,cst:4:end);
+combined_res(:,:,5) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
+% 6) No restrictions, vaccination of random population, equivalent to hospital employees
+sim_res = load('random_vaccination');
+temp = sim_res.tot_deaths(:,cst:4:end);
+combined_res(:,:,6) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
+% 7) No restrictions, vaccination of random, 10x hospital employees
+sim_res = load('random_vaccination_10_times');
+temp = sim_res.tot_deaths(:,cst:4:end);
+combined_res(:,:,7) = [temp(:,2), temp(:,agregated_time(2:end))-temp(:,agregated_time(1:end-1))];
 
 plot_all_and_mean(agregated_time, combined_res, agregated_time, weekly_deaths, 5, clrm, clrf, plot_title, ylab, false)
 
@@ -180,8 +232,22 @@ function plot_all_and_mean(time, y, t_real, y_real, i, clrm, clrf, plot_title, y
 
     % To plot just the mean
     for dset=1:size(y,3)
-         plot(time, mean(y(:,:,dset),1), 'LineWidth', 2, 'Color', clrm(dset,:))
-         hold on
+        if dset == 3 % School employees
+            plot(time, mean(y(:,:,dset),1), '--', 'LineWidth', 2, 'Color', clrm(dset,:))
+            hold on
+        elseif dset == 4 % RH employees
+            plot(time, mean(y(:,:,dset),1), '--', 'LineWidth', 2, 'Color', clrm(dset,:))
+            hold on
+        elseif dset == 5 % RH reidence
+            plot(time, mean(y(:,:,dset),1), '--', 'LineWidth', 2, 'Color', clrm(dset,:))
+            hold on
+        elseif dset == 2 % RH reidence
+            plot(time, mean(y(:,:,dset),1), '--', 'LineWidth', 2, 'Color', clrm(dset,:))
+            hold on
+        else
+            plot(time, mean(y(:,:,dset),1), 'LineWidth', 2, 'Color', clrm(dset,:))
+            hold on
+        end
     end
      
     if noMarkers == false
