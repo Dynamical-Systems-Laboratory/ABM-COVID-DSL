@@ -6,7 +6,7 @@ with open('output/simulation.log', 'r') as fin, open('input_data/random_v_number
 		#if 'casualities' in line:
 		#	temp = line.strip().split()
 		#	Rd.append(float(temp[-1]));
-		if 'retirement home residents' in line:
+		if 'residents' in line:
 			temp = line.strip().split()
 			fout.write(temp[-1]+'\n')
 			
