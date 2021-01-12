@@ -18,7 +18,10 @@ int main()
 	// Number of initially infected
 	int inf0 = 22;
    	// Vaccination properties - group vaccination
-	std::string v_group("hospital employees");
+	//std::string v_group("hospital employees");
+	//std::string v_group("school employees");
+	//std::string v_group("retirement home employees");
+	std::string v_group("retirement home residents");
 	bool v_verbose = true;
 
 	// Input files
@@ -80,7 +83,7 @@ int main()
 	abm.create_agents(fin, inf0);
 
 	// Vaccination setup
-	//abm.set_group_vaccination(v_group, v_verbose);
+	abm.set_group_vaccination(v_group, v_verbose);
 
 	// Simulation
 	// Data collection

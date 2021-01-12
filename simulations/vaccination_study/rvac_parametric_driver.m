@@ -37,7 +37,8 @@ tot_icu = zeros(num_sim, num_steps+1);
 
 for i=1:num_sim
    i
-   system(sprintf('./rvac_covid_exe %.0f >> output/simulation.log', 10*to_vaccinate(i)));
+   %system(sprintf('./rvac_covid_exe %.0f >> output/simulation.log', 10*to_vaccinate(i)));
+   system(sprintf('./rvac_covid_exe %.0f >> output/simulation.log', to_vaccinate(i)));
    % Collect 
    inf_data(i,:) = load('output/infected_with_time.txt');
    new_pos_data(i,:) = load('output/new_tested_pos_step.txt');
@@ -63,4 +64,5 @@ for i=1:num_sim
    tot_icu(i,:) = load('output/icu_with_time.txt');
 end
 
-save('random_vaccination_ten_times')
+save('random_vaccination')
+%save('random_vaccination_10_times')

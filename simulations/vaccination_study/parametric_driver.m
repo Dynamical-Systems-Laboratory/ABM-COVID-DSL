@@ -60,5 +60,8 @@ for i=1:num_sim
    tot_icu(i,:) = load('output/icu_with_time.txt');
 end
 
-save('base_case')
+% save('base_case')
 % save('hsp_employee_vaccination')
+% save('school_employee_vaccination')
+% save('rh_employee_vaccination')
+save('rh_resident_vaccination')

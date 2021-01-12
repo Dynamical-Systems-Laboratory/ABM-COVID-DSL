@@ -385,7 +385,10 @@ bool abm_vaccination_group()
 	std::string v_group("hospital employees");
 	bool v_verbose = true;
 
-	// Regular tests
+	//
+	// Hospital employees - regular tests
+	//
+	
 	ABM abm = create_abm(dt, initially_infected);
 	abm.set_group_vaccination(v_group, v_verbose);
 	const std::map<std::string, double> infection_parameters = abm.get_infection_parameters();
@@ -432,10 +435,166 @@ bool abm_vaccination_group()
 		time = abm.get_time(); 
 		abm.transmit_infection();
 	}
-	
+
+	//
+	// School employees - regular tests
+	// 
+
+	v_group = "school employees";	
+	abm = create_abm(dt, initially_infected);
+	abm.set_group_vaccination(v_group, v_verbose);
+
+	// Simulation
+	for (int ti = 0; ti<=tmax; ++ti){
+
+		// No testing - no vaccination 
+		if (time < infection_parameters.at("start testing")){
+			const std::vector<Agent>& agents = abm.get_vector_of_agents();
+			for (const auto& agent : agents){
+				if (agent.vaccinated() == true){
+					std::cerr << "Agents vaccinated before vaccination is supposed to start" << std::endl;
+					return false;
+				}
+			}
+		}
+
+		// Start of vaccination, and the remaining part 
+		if (float_equality<double>(time, infection_parameters.at("start testing"), tol)
+						|| time > infection_parameters.at("start testing")){
+			const std::vector<Agent>& agents = abm.get_vector_of_agents();
+			int actual_vac = 0;
+			for (const auto& agent : agents){
+				if (agent.vaccinated()){
+					// Collect 
+					++actual_vac;
+					// Group check
+					if (!agent.school_employee()){
+						std::cerr << "Agent not a school employee"  << std::endl;
+						return false;
+					}
+					// Flag check - throught the run
+					if (agent.removed() || agent.infected() || agent.exposed()
+							|| agent.symptomatic() || agent.symptomatic_non_covid()){
+						std::cerr << "Agent in an invalid state"  << agent.removed() << agent.infected() << agent.exposed()
+							<< agent.symptomatic() << agent.symptomatic_non_covid()<< std::endl;
+						return false;
+					}
+				}
+			}
+		}
+		// Propagate
+		time = abm.get_time(); 
+		abm.transmit_infection();
+	}
+
+	//
+	// Retirement home employees - regular tests
+	// 
+
+	v_group = "retirement home employees";	
+	abm = create_abm(dt, initially_infected);
+	abm.set_group_vaccination(v_group, v_verbose);
+
+	// Simulation
+	for (int ti = 0; ti<=tmax; ++ti){
+
+		// No testing - no vaccination 
+		if (time < infection_parameters.at("start testing")){
+			const std::vector<Agent>& agents = abm.get_vector_of_agents();
+			for (const auto& agent : agents){
+				if (agent.vaccinated() == true){
+					std::cerr << "Agents vaccinated before vaccination is supposed to start" << std::endl;
+					return false;
+				}
+			}
+		}
+
+		// Start of vaccination, and the remaining part 
+		if (float_equality<double>(time, infection_parameters.at("start testing"), tol)
+						|| time > infection_parameters.at("start testing")){
+			const std::vector<Agent>& agents = abm.get_vector_of_agents();
+			int actual_vac = 0;
+			for (const auto& agent : agents){
+				if (agent.vaccinated()){
+					// Collect 
+					++actual_vac;
+					// Group check
+					if (!agent.retirement_home_employee()){
+						std::cerr << "Agent not a retirement home employee"  << std::endl;
+						return false;
+					}
+					// Flag check - throught the run
+					if (agent.removed() || agent.infected() || agent.exposed()
+							|| agent.symptomatic() || agent.symptomatic_non_covid()){
+						std::cerr << "Agent in an invalid state"  << agent.removed() << agent.infected() << agent.exposed()
+							<< agent.symptomatic() << agent.symptomatic_non_covid()<< std::endl;
+						return false;
+					}
+				}
+			}
+		}
+		// Propagate
+		time = abm.get_time(); 
+		abm.transmit_infection();
+	}
+
+	//
+	// Retirement home resident - regular tests
+	// 
+
+	v_group = "retirement home residents";	
+	abm = create_abm(dt, initially_infected);
+	abm.set_group_vaccination(v_group, v_verbose);
+
+	// Simulation
+	for (int ti = 0; ti<=tmax; ++ti){
+
+		// No testing - no vaccination 
+		if (time < infection_parameters.at("start testing")){
+			const std::vector<Agent>& agents = abm.get_vector_of_agents();
+			for (const auto& agent : agents){
+				if (agent.vaccinated() == true){
+					std::cerr << "Agents vaccinated before vaccination is supposed to start" << std::endl;
+					return false;
+				}
+			}
+		}
+
+		// Start of vaccination, and the remaining part 
+		if (float_equality<double>(time, infection_parameters.at("start testing"), tol)
+						|| time > infection_parameters.at("start testing")){
+			const std::vector<Agent>& agents = abm.get_vector_of_agents();
+			int actual_vac = 0;
+			for (const auto& agent : agents){
+				if (agent.vaccinated()){
+					// Collect 
+					++actual_vac;
+					// Group check
+					if (!agent.retirement_home_resident()){
+						std::cerr << "Agent not a retirement home resident"  << std::endl;
+						return false;
+					}
+					// Flag check - throught the run
+					if (agent.removed() || agent.infected() || agent.exposed()
+							|| agent.symptomatic() || agent.symptomatic_non_covid()){
+						std::cerr << "Agent in an invalid state"  << agent.removed() << agent.infected() << agent.exposed()
+							<< agent.symptomatic() << agent.symptomatic_non_covid()<< std::endl;
+						return false;
+					}
+				}
+			}
+		}
+		// Propagate
+		time = abm.get_time(); 
+		abm.transmit_infection();
+	}
+
+	//
 	// Exception test - wrong input 
+	//
+	
 	std::invalid_argument arg_err("Wrong name of the group");
-	std::string wrong_name("school employee");
+	std::string wrong_name("middle school employee");
 	// New instance and initialization
 	ABM ex_abm = create_abm(dt, initially_infected);
 	// For information from the exception wrapper
